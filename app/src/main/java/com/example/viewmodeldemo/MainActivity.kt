@@ -3,6 +3,7 @@ package com.example.viewmodeldemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
 import com.example.viewmodeldemo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), LifecycleOwner {
@@ -14,11 +15,8 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val viewModelFactory = MainViewModelFactory("Evan Templeton")
+        ViewModelProvider(this, viewModelFactory).get(MainActivityViewModel::class.java)
 
-        var number = 0
-        binding.button.setOnClickListener {
-            number++
-            binding.textView.text = number.toString()
-        }
     }
 }
